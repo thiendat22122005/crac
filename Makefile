@@ -1,5 +1,5 @@
 ARCHS = arm64 arm64e
-TARGET = iphone:clang:latest:14.0
+TARGET = iphone:clang:14.5:14.0
 THEOS_PACKAGE_SCHEME = rootless
 
 TWEAK_NAME = VCNextCrack
