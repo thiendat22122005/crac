@@ -1,0 +1,43 @@
+name: Build Theos Tweak
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    env:
+      THEOS: ${{ github.workspace }}/theos
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Install dependencies
+        run: |
+          brew install ldid xz
+
+      - name: Setup Theos
+        run: |
+          git clone --recursive https://github.com/theos/theos.git $THEOS
+          
+      - name: Download iOS SDK
+        run: |
+          git clone https://github.com/theos/sdks.git $THEOS/sdks
+
+      - name: Build Tweak (.dylib and .deb)
+        run: |
+          make package
+          
+      - name: Upload .deb package
+        uses: actions/upload-artifact@v4
+        with:
+          name: tweak-deb
+          path: packages/*.deb
+          
+      - name: Upload .dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: tweak-dylib
+          path: .theos/obj/**/*.dylib
