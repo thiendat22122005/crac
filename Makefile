@@ -6,5 +6,5 @@ TWEAK_NAME = VCNextCrack
 VCNextCrack_FILES = tweak.x
 VCNextCrack_CFLAGS = -fobjc-arc
 
-include $(THEOS)/makefiles/common.make
-include $(THEOS_MAKE_PATH)/tweak.make
+include $(THEOS)/makefiles/common.mk
+include $(THEOS_MAKE_PATH)/tweak.mk
