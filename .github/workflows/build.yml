@@ -27,15 +27,9 @@ jobs:
           git clone https://github.com/theos/sdks.git /tmp/sdks
           mv /tmp/sdks/* $THEOS/sdks/
 
-      - name: Build Tweak (.dylib and .deb)
+      - name: Build Tweak (.dylib)
         run: |
-          make package
-          
-      - name: Upload .deb package
-        uses: actions/upload-artifact@v4
-        with:
-          name: tweak-deb
-          path: packages/*.deb
+          make
           
       - name: Upload .dylib
         uses: actions/upload-artifact@v4
